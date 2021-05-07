@@ -19,3 +19,20 @@ classifier=ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/W
 function modelLoaded(){
     console.log("model");
 }
+
+function identify_person(){
+    console.log("inside identify function")
+     img=document.getElementById("photo");
+     classifier.classify(img, gotResult);
+}
+
+function gotResult(error,results){
+if(error){
+    console.error(error);
+}
+else{
+    console.log(results);
+    document.getElementById("result_obj").innerHTML=results[0].label;
+    document.getElementById("result_accu").innerHTML=results[0].confidence.toFixed(3);
+}
+}
